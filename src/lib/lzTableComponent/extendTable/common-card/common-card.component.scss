@@ -1,0 +1,41 @@
+:host ::ng-deep .custom-image img {
+    display: block;
+}
+
+:host ::ng-deep .custom-card {
+    padding: 10px 16px;
+}
+
+:host ::ng-deep .custom-card p {
+    color: #999;
+}
+
+:host ::ng-deep .ant-card-body {
+    padding: 0;
+}
+
+.card{
+    position:absolute;
+    padding: 10px;
+    // transition:  .7s ease-out;
+    width: 245px;
+    text-align: center;
+    display: none;
+}
+
+#nzCard{
+    position: relative;
+}
+
+.card-pagination{
+    float: right;
+}
+
+nz-spin:after { 
+    clear:both;
+    content:'';
+    display:block;
+    width:0;
+    height:0;
+    visibility:hidden;
+}

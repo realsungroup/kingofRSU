@@ -1,0 +1,91 @@
+<nz-layout class="main-container" [style.height.px]="_siderHeight">
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0" [nzBreakpoint]="false" [nzTrigger]="null">
+    <div class="logo">
+      Realsun
+    </div>
+
+    <ul nz-menu class="menu-ul-top" [nzTheme]="'dark'" [nzMode]="'inline'" [style.height.px]="_siderHeight - 66">
+      <ng-container *ngFor="let r1 of routerArr">
+        <li nz-menu-item *ngIf="r1?.children?.length <= 0" [routerLink]="r1.C3_558541978410">
+          <span title><i class="anticon anticon-bars"></i><span class="nav-text">{{r1?.C3_558541955195}}</span></span>
+        </li>
+        <li nz-submenu *ngIf="r1?.children?.length > 0">
+          <span title><i class="anticon anticon-bars"></i><span class="nav-text">{{r1?.C3_558541955195}}</span></span>
+          <ul>
+            <ng-container *ngFor="let r2 of r1.children">
+              <li nz-menu-item *ngIf="r2?.children?.length <= 0" [routerLink]="r2.C3_558541978410">{{r2?.C3_558541955195}}</li>
+              <li nz-submenu *ngIf="r2?.children?.length > 0">
+                <span title>{{r2?.C3_558541955195}}</span>
+                <ul>
+                  <ng-container *ngFor="let r3 of r2?.children">
+                    <li nz-menu-item *ngIf="r3?.children?.length <= 0" [routerLink]="r3.C3_558541978410">{{r3?.C3_558541955195}}</li>
+                    <li nz-submenu *ngIf="r3?.children?.length > 0" [class.padding-24]="!isCollapsed">
+                      <span title>{{r3?.C3_558541955195}}</span>
+                      <ul>
+                        <ng-container *ngFor="let r4 of r3?.children">
+                          <li nz-menu-item *ngIf="r4?.children?.length <= 0" [routerLink]="r4.C3_558541978410">{{r4?.C3_558541955195}}</li>
+                          <li nz-submenu *ngIf="r4?.children?.length > 0" [class.padding-24]="!isCollapsed">
+                            <span title>{{r4?.C3_558541955195}}</span>
+                            <ul>
+                              <ng-container *ngFor="let r5 of r4?.children">
+                                <li nz-menu-item *ngIf="r5?.children?.length <= 0" [routerLink]="r5.C3_558541978410">{{r5?.C3_558541955195}}</li>
+                                <li nz-submenu *ngIf="r5?.children?.length > 0" [class.padding-24]="!isCollapsed">
+                                  <span title>{{r5?.C3_558541955195}}</span>
+                                  <ul>
+
+                                  </ul>
+                                </li>
+                              </ng-container>
+                            </ul>
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header style="background: #fff; padding:0;">
+      <div nz-row [nzType]="'flex'" [nzJustify]="'start'" [nzAlign]="'middle'">
+          <div nz-col [nzSpan]="2" title="菜单开合">
+            <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed" (click)="isCollapsed=!isCollapsed"></i>
+          </div>
+          <div nz-col [nzSpan]="22">
+            <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" style="line-height: 64px;">
+              <div class="nav-container">
+                <button nz-button [routerLink]="'/main/clearCache'" [nzShape]="'circle'" title="清空缓存">
+                    <i class="anticon anticon-delete"></i>
+                </button>
+                <button nz-button (click)="loginOutClick()" [nzShape]="'circle'" title="退出登录">
+                    <i class="anticon anticon-logout"></i>
+                </button>
+                <div class="clear-float"></div> 
+              </div>
+            </ul>
+          </div>
+      </div>
+    </nz-header>
+
+    <nz-content class="lz-content">
+      <!-- padding-left:30px -->
+      <nz-breadcrumb style="margin:12px 0">
+        <nz-breadcrumb-item *ngFor="let bread of breadcrumbArr">{{bread?.title}}</nz-breadcrumb-item>
+      </nz-breadcrumb>
+
+      <ng-content select=".nc-breadcrumb">
+
+      </ng-content>
+
+      <div class="lzmain-router-container">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">©2017 Implement By LiZhang</nz-footer>
+  </nz-layout>
+</nz-layout>

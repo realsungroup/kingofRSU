@@ -1,0 +1,12 @@
+
+
+<app-lzcommon-table 
+    [isAutoData]="true"
+    [requestType]="'GET'"
+    [requestUrl]="url"
+    [requestParams]="requestParams"
+    [requestDataType]="requestDataType">
+    <ng-container class="table-menu">
+        <button nz-button export-xlsx export-name="员工年度授予导出" [export-el]="navitveEle" export-select=".ant-table-body table">导出</button>
+    </ng-container>
+</app-lzcommon-table>

@@ -1,0 +1,34 @@
+$itemHeight : 30px;
+
+.window-model-container{
+    background-color: white;
+}
+
+.form-readonly-container{
+    div{
+        padding: 0 10px;
+
+        label{
+           line-height: 30px;
+        }
+    }
+
+    .lzform-item-row{
+        margin: 10px 0;
+        min-height: $itemHeight;
+    }
+
+    .title-right{
+        text-align: right;
+                min-height: $itemHeight;
+
+    }
+
+    .val-div{
+        border: 1px solid lightgray;
+        border-radius: 4px;
+        min-height: $itemHeight;
+
+    }
+}
+
