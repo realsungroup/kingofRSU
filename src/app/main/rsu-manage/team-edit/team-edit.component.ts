@@ -61,7 +61,7 @@ export class TeamEditComponent extends RsuManageComponent implements OnInit {
           console.info(this.filterArrayMap)
 
         }else{
-          this.messageSev.success('获取数据失败')
+          this.messageSev.error('获取数据失败')
         }
         this._dataLoading  = false;
       },

@@ -39,120 +39,100 @@ export class LoginService {
   }
 
   getRouteData() {
-    let params = {
-      'resid': 558542569195
-    }
-    let url = this.path.baseUrl + this.path.getData;
     return new Observable(observer => {
-      // this.httpService.baseRequest("GET", url, params, dataType.HostTableDataEM).subscribe(
-      //   data => {
-        let data = {
-          data:[]
-        };
-          if (data && data.data) {
-            let dataArr = data.data;
-            console.log("environment");
-            if (!environment.production) {
-            //   dataArr.push({
-            //     C3_558541978410 : '/main',
-            //     C3_558541903900 : 0,
-            //     C3_558541922352 : "",
-            //     C3_558541943043 : "main",
-            //     C3_558541955195: "main"
-            //   },{
-            //     C3_558541978410 : '/main/rsu',
-            //     C3_558541903900 : 1,
-            //     C3_558541922352 : "main",
-            //     C3_558541943043 : "rsu",
-            //     C3_558541955195: "rsu"
-            //   },
-            //   {
-            //     C3_558541978410 : '/main/staffList',
-            //     C3_558541903900 : 1,
-            //     C3_558541922352 : "main",
-            //     C3_558541943043 : "staffList",
-            //     C3_558541955195: "staffList"
-            //   },
-            // {
-            //     C3_558541978410 : '/main/clearCache',
-            //     C3_558541903900 : 0,
-            //     C3_558541922352 : "",
-            //     C3_558541943043 : "clearCache",
-            //     C3_558541955195: "clearCache"
-            //   })
-              dataArr = [{
-                C3_558541978410 : '/main',
-                C3_558541903900 : 0,
-                C3_558541922352 : "",
-                C3_558541943043 : "main",
-                C3_558541955195: "main"
-              },{
-                C3_558541978410 : '/main/rsu',
-                C3_558541903900 : 1,
-                C3_558541922352 : "main",
-                C3_558541943043 : "rsu",
-                C3_558541955195: "rsu"
-              },
-              {
-                C3_558541978410 : '/main/staffList',
-                C3_558541903900 : 1,
-                C3_558541922352 : "main",
-                C3_558541943043 : "staffList",
-                C3_558541955195: "staffList"
-              },{
-                C3_558541978410 : '/main/staffListExport',
-                C3_558541903900 : 1,
-                C3_558541922352 : "main",
-                C3_558541943043 : "staffListExport",
-                C3_558541955195: "staffListExport"
-              },{
-                C3_558541978410 : '/main/teamEdit',
-                C3_558541903900 : 1,
-                C3_558541922352 : "main",
-                C3_558541943043 : "teamEdit",
-                C3_558541955195: "teamEdit"
-              },{
-                C3_558541978410 : '/main/rsuPend',
-                C3_558541903900 : 1,
-                C3_558541922352 : "main",
-                C3_558541943043 : "rsuPend",
-                C3_558541955195: "rsuPend"
-              },
-            {
-                C3_558541978410 : '/main/clearCache',
-                C3_558541903900 : 0,
-                C3_558541922352 : "",
-                C3_558541943043 : "clearCache",
-                C3_558541955195: "clearCache"
-              }];
-            }
-            window.app["routesArr"] = dataArr;
 
-            let filterRouteArr = this.filterRoute(this.router.config[2].children, dataArr);
-            this.router.config[2].children = filterRouteArr;
+      let dataArr = [];
+      if (!environment.production) {
+        dataArr = [{
+          C3_558541978410: '/main',
+          C3_558541903900: 0,
+          C3_558541922352: "",
+          C3_558541943043: "main",
+          C3_558541955195: "main"
+        }, {
+          C3_558541978410: '/main/rsu',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541943043: "rsu",
+          C3_558541955195: "rsu"
+        },
+        {
+          C3_558541978410: '/main/staffList',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541943043: "staffList",
+          C3_558541955195: "staffList"
+        }, {
+          C3_558541978410: '/main/staffListExport',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541943043: "staffListExport",
+          C3_558541955195: "staffListExport"
+        }, {
+          C3_558541978410: '/main/teamEdit',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541943043: "teamEdit",
+          C3_558541955195: "teamEdit"
+        }, {
+          C3_558541978410: '/main/rsuPend',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541943043: "rsuPend",
+          C3_558541955195: "rsuPend"
+        },
+        {
+          C3_558541978410: '/main/clearCache',
+          C3_558541903900: 0,
+          C3_558541922352: "",
+          C3_558541943043: "clearCache",
+          C3_558541955195: "clearCache"
+        }];
+      }
+      window.app["routesArr"] = dataArr;
 
-            observer.next();
-          } else {
-            observer.error();
-          }
-          observer.complete();
-        // },
-        // err => {
-        //   observer.error();
-        //   observer.complete();
-        // },
-        // () => {
-        //   // observer.complete();
-        // });
+      let filterRouteArr = this.filterRoute(this.router.config[2].children, dataArr);
+      this.router.config[2].children = filterRouteArr;
+
+      observer.next();
+      observer.complete();
     })
+
+
+    // let params = {
+    //   'resid': 558542569195
+    // }
+    // let url = this.path.baseUrl + this.path.getData;
+    // return new Observable(observer => {
+    //   this.httpService.baseRequest("GET", url, params, dataType.HostTableDataEM).subscribe(
+    //     data => {
+    //       if (data && data.data) {
+    //         let dataArr = data.data;
+    //         window.app["routesArr"] = dataArr;
+
+    //         let filterRouteArr = this.filterRoute(this.router.config[2].children, dataArr);
+    //         this.router.config[2].children = filterRouteArr;
+
+    //         observer.next();
+    //       } else {
+    //         observer.error();
+    //       }
+    //       observer.complete();
+    //     },
+    //     err => {
+    //       observer.error();
+    //       observer.complete();
+    //     },
+    //     () => {
+    //       // observer.complete();
+    //     });
+    // })
 
   }
 
   private filterRoute(routes: Array<any>, routeArr: Array<any>) {
     return routes.filter((r: any) => {
       if (r.hasOwnProperty("pathMatch")) return true;
-
-
 
       if (!!!routeArr.filter(val => {
         if (r.link == val.C3_558541978410) {
@@ -173,15 +153,15 @@ export class LoginService {
     })
   }
 
-  setAPITimeOut(){
+  setAPITimeOut() {
     const path = this.httpService.path;
     let timeOutUrl = path.baseUrl + path.timeOut;
     const timeOutParams = {
-      timeout : 100000
+      timeout: 100000
     }
-    this.httpService.baseRequest("GET",timeOutUrl,timeOutParams,this.httpService.dataT.UnKnow).subscribe(
+    this.httpService.baseRequest("GET", timeOutUrl, timeOutParams, this.httpService.dataT.UnKnow).subscribe(
       data => {
-        
+
       },
       error => {
 

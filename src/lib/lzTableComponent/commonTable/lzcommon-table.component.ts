@@ -12,7 +12,6 @@ import { NzMessageService, NzModalService } from 'ng-zorro-antd';
   selector: 'app-lzcommon-table',
   templateUrl: './lzcommon-table.component.html',
   styleUrls: ['./lzcommon-table.component.scss'],
-
 })
 export class LZcommonTableComponent implements OnInit, OnChanges {
   _cmswhere: string = '';
@@ -63,8 +62,16 @@ export class LZcommonTableComponent implements OnInit, OnChanges {
   _total = 1;//数据总数
   _dataSet = [];//获取的数据数组
   _loading = true;//loading加载界面是否显示
-
   _btnExportLoading: boolean = false;//导出按钮loading状态
+
+  //table header 过滤排序部分
+  // @Input() _copyData = [];
+
+  @Input() havTableFilter:boolean = false;
+  copyData = [];
+  @Input() filterColArr = [];//过滤字段数组
+  @Input() sortColArr = [];//排序字段数组
+  
 
   constructor(protected _httpSev: BaseHttpService, protected modalSev: NzModalService, protected messageSev: NzMessageService) {
 
@@ -138,6 +145,7 @@ export class LZcommonTableComponent implements OnInit, OnChanges {
               this._dataSet = [];
               this._total = 0;
             }
+              this.copyData = [...this._dataSet];
           },
           error => {
             this.messageSev.error("获取数据失败");
@@ -185,6 +193,7 @@ export class LZcommonTableComponent implements OnInit, OnChanges {
               this._dataSet = [];
               this._total = 0;
             }
+            this.copyData = [...this._dataSet];
           },
           error => {
             this.messageSev.error("获取数据失败");
@@ -390,6 +399,12 @@ export class LZcommonTableComponent implements OnInit, OnChanges {
     } else if (notiObj && notiObj.name == 'update' && notiObj.data && notiObj.data.idx >= 0) {//本地更新（未用）
 
     }
+  }
+
+  /********组件代理******* */
+  //table filter 筛选 排序更新事件
+  tableFilterUpdateData(data){
+    this._dataSet = data;
   }
 
 }

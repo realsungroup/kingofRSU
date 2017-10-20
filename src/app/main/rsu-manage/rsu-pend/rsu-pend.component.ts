@@ -55,7 +55,7 @@ export class RsuPendComponent extends RsuManageComponent implements OnInit {
             this.filterArrayMap[col] = this.getFilterArrData(this.copyData, col);
           })
         } else {
-          this.messageSev.success('获取数据失败')
+          this.messageSev.error('获取数据失败')
         }
       },
       error => {

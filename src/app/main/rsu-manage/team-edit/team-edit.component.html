@@ -1,15 +1,39 @@
 <button nz-button (click)="submitClick()" [nzType]="'default'" [nzLoading]="_submitLoading">提交</button>
 
 <nz-spin [nzSpinning]="_dataLoading">
-  <nz-table #nzTable [nzDataSource]="_data" [nzPageSize]="20">
+  <nz-table #nzTable [nzDataSource]="_data" [nzPageSize]="50" [nzScroll]="{ y: 650 }">
+    <!-- <ng-template #nzFixedHeader>  -->
+      
     <thead nz-thead>
       <tr>
+        <th nz-th *ngFor="let title of _titleArr">
+          <ng-container [ngSwitch]="title.id">
+            <ng-container *ngSwitchCase="'C3_561550223794'">标准数总金额</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550234465'">分配数总金额</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550460169'">调整数总金额</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550653754'">金额差值</ng-container>
+            <ng-container *ngSwitchCase="'C3_561571697273'">部门调整值总金额</ng-container>
+          </ng-container>
+        </th>
+      </tr>
+      <tr>
         <th nz-th *ngFor="let title of _titleArr;let last = last">
-          <ng-container *ngIf="sumColArr.indexOf(title.id) !== -1 && title.id != 'C3_561571697273'">
+          <ng-container *ngIf="sumColArr.indexOf(title.id) !== -1 && title.id != 'C3_561550653754'">
             {{getColSumMoney(title.id)}}
           </ng-container>
-          <ng-container *ngIf="title.id == 'C3_561571697273'">
+          <ng-container *ngIf="title.id == 'C3_561550653754'">
             {{getDiffMoney()}}
+          </ng-container>
+        </th>
+      </tr>
+      <tr>
+        <th nz-th *ngFor="let title of _titleArr">
+          <ng-container [ngSwitch]="title.id">
+            <ng-container *ngSwitchCase="'C3_561550223794'">标准数总数</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550234465'">分配数总数</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550460169'">调整数总数</ng-container>
+            <ng-container *ngSwitchCase="'C3_561550653754'">价值总数</ng-container>
+            <ng-container *ngSwitchCase="'C3_561571697273'">部门调整值总数</ng-container>
           </ng-container>
         </th>
       </tr>
@@ -22,7 +46,7 @@
       </tr>
       <tr>
         <th nz-th *ngFor="let title of _titleArr">
-          <span>{{title.text}}{{title.id}}</span>
+          <span>{{title.text}}</span>
 
           <ng-container *ngIf="sortColArr.indexOf(title.id) !== -1">
             <nz-table-sort [(nzValue)]="sortMap[title.id]" (nzValueChange)="sort('' + title.id,$event)"></nz-table-sort>
@@ -47,6 +71,7 @@
         </th>
       </tr>
     </thead>
+    <!-- </ng-template> -->
     <tbody nz-tbody>
       <tr nz-tbody-tr *ngFor="let data of nzTable.data">
         <td nz-td *ngFor="let title of _titleArr">

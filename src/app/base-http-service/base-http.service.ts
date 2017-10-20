@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 import { dataType } from '../enum/http.enum';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class BaseHttpService {
@@ -11,7 +14,6 @@ export class BaseHttpService {
   public path: any;
   public appConfig: any;
   public dataT = dataType;
-
   private loginMethod:string = '';
 
   constructor(private http: Http, private appS: AppService, private router: Router) {
@@ -148,7 +150,7 @@ export class BaseHttpService {
   }
 
   baseRequest(type: string, url: string, params: any, dType?: dataType) {
-    console.log("params"+ JSON.stringify(params));
+    if(!environment.production) console.log("params"+ JSON.stringify(params));
     let baseObser: Observable<any>;
     let headers = this.getHeaderWithUrl(url); //console.info("header=>" , headers);
     let options = new RequestOptions({ headers: headers });

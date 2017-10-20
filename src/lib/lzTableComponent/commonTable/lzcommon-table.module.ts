@@ -9,19 +9,26 @@ import { NzTreeModule } from 'ng-tree-antd';
 import { LZcommonTableComponent } from './lzcommon-table.component';
 import { WindowModalFormReadonlyComponent } from '../window-modal/modal-form-readonly/modal-form-readonly.component';
 import { ModalFormComponent } from '../window-modal/modal-form/modal-form.component';
-import { FormItemDynamicComponent } from '../form-item-dynamic/form-item-dynamic.component';
+import { FormItemDynamicComponent } from '../component/form-item-dynamic/form-item-dynamic.component';
 import { FormItemResourceComponent } from '../window-modal/form-item-resource/form-item-resource.component';
 import { ExtendTableComponent } from '../../../app/extend-table/extend-table.component';
-import { FormItemDynamicPComponent } from '../form-item-dynamic-p/form-item-dynamic-p.component';
+import { FormItemDynamicPComponent } from '../component/form-item-dynamic-p/form-item-dynamic-p.component';
 import { AddFormDataComponent } from '../window-modal/add-form-data/add-form-data.component';
-import { FormTitleDynamicComponent } from '../form-title-dynamic/form-title-dynamic.component';
+import { FormTitleDynamicComponent } from '../component/form-title-dynamic/form-title-dynamic.component';
 import { CommonCardComponent } from '../extendTable/common-card/common-card.component';
-import { CommonTreeComponent } from '../common-tree/common-tree.component';
-
+import { CommonTreeComponent } from '../component/common-tree/common-tree.component';
+import { TableFilterComponent } from '../component/table-filter/table-filter.component';
+ 
 import { MergePipe } from '../pipe/merge.pipe';
 import { RepeatLoadOverDirective } from '../directive/repeat-load-over.directive';
 
 import { LZUntilService } from '../until/until.service';
+
+const DIRECTIVES = [
+  TableFilterComponent,
+  CommonTreeComponent,
+  CommonCardComponent
+]
 
 @NgModule({
   imports: [
@@ -43,9 +50,7 @@ import { LZUntilService } from '../until/until.service';
     FormItemDynamicPComponent,
     AddFormDataComponent,
     FormTitleDynamicComponent,
-    CommonCardComponent,
-    CommonTreeComponent,
-    RepeatLoadOverDirective],
+    RepeatLoadOverDirective,...DIRECTIVES],
   providers: [LZUntilService],
   exports: [LZcommonTableComponent,
     WindowModalFormReadonlyComponent,
@@ -55,8 +60,7 @@ import { LZUntilService } from '../until/until.service';
     ExtendTableComponent,
     FormItemDynamicPComponent,
     AddFormDataComponent,
-    FormTitleDynamicComponent,
-    CommonCardComponent,
-    CommonTreeComponent]
+    FormTitleDynamicComponent
+    ,...DIRECTIVES]
 })
 export class LzcommonTableModule { }
