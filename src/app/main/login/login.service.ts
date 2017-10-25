@@ -42,7 +42,6 @@ export class LoginService {
     return new Observable(observer => {
 
       let dataArr = [];
-      if (!environment.production) {
         dataArr = [{
           C3_558541978410: '/main',
           C3_558541903900: 0,
@@ -89,7 +88,6 @@ export class LoginService {
           C3_558541943043: "clearCache",
           C3_558541955195: "clearCache"
         }];
-      }
       window.app["routesArr"] = dataArr;
 
       let filterRouteArr = this.filterRoute(this.router.config[2].children, dataArr);

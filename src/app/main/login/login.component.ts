@@ -85,8 +85,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true],
     });
-
-    this.loginSve.setAPITimeOut();
+    if(window.app['setTimeOutEnable']) this.loginSve.setAPITimeOut();
   }
 
   _submitForm() {

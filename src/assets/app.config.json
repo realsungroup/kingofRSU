@@ -17,5 +17,6 @@
         "fileUrl":"http://kingofdinner.realsun.me:8081/",
         "timeOut":"api/100/table/SetTimeout"
     },
-    "enterprisecode": "9063"
+    "enterprisecode": "9063",
+    "setTimeOutEnable":false
 }
