@@ -67,7 +67,7 @@ export class FormItemDynamicComponent implements OnInit, OnChanges {
       this.obj = this.data[p];//alert(this.obj);
     } else if (this.selectTypeEM == FormItemTypeEM.Date || this.selectTypeEM == FormItemTypeEM.Time) {
       this.obj = '';
-      if(this.obj){
+      if(m){
         this.obj = new Date(m);
         if (!this.ut.isValiateDate(this.obj)) this.obj = '';
       }
