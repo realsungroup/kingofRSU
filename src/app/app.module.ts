@@ -15,6 +15,8 @@ import { BaseComponent } from './base-component/base.component';
 import { BaseHttpService } from './base-http-service/base-http.service';
 import { AppService } from './app.service';
 import { FloatBuildPipe } from './shared/pipes/float-build.pipe';
+import { StorageService } from './util/storage/storage.service';
+
 
 @NgModule({
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
@@ -34,7 +36,7 @@ import { FloatBuildPipe } from './shared/pipes/float-build.pipe';
     LoginModule,
     BrowserAnimationsModule
   ],
-  providers: [BaseHttpService, AppService,{provide: LocationStrategy,useClass: HashLocationStrategy}],
+  providers: [BaseHttpService, AppService,{provide: LocationStrategy,useClass: HashLocationStrategy},StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

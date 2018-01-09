@@ -51,7 +51,7 @@ export class RsuManageComponent extends BaseComponent implements OnInit {
     this._http.baseRequest("GET", moneyUrl, moneyParams, this._http.dataT.HostTableDataEM).subscribe(
       data => {
         if (data && data['data'] && Array.isArray(data['data']) && data['data'][0]) {
-            this.moneyProportion = data['data'][0]['C3_561550600104'];
+            this.moneyProportion = data['data'][0]['C3_561550600104'];//每股价格
         }
       },
       error => {

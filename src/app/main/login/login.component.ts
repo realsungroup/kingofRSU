@@ -24,8 +24,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
   validateForm: FormGroup;
   _loginBtnLoading = false;
   loginM: LoginInterface = {
-    account: "",
-    passWord: "",
+    account: "demo1",
+    passWord: "66287175",
   };
 
   constructor(protected injector: Injector,
@@ -114,6 +114,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
       return;
     }
     window.app["userInfo"] = data;
+    this.loginSve.httpService.storageSer.setUserInfo(data);
     this.loginSve.getRouteData().subscribe(
       data => {
         this.navigateWithPath(path);

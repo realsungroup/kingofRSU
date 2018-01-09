@@ -99,7 +99,14 @@ export class TableFilterComponent implements OnInit {
       };
       dataMap[obj.name] = obj;
     }
-    return Object.values(dataMap);
+    return this.getObjectValues(dataMap);
   }
 
+  getObjectValues(obj){
+    let valuesArr = [];
+    for(var key in obj){
+      valuesArr.push(obj[key]);
+    }
+    return valuesArr;
+  }
 }

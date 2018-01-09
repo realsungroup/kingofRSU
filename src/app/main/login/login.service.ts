@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 export class LoginService {
   path: any;
 
-  constructor(private httpService: BaseHttpService,
+  constructor(public httpService: BaseHttpService,
     private appSve: AppService,
     private router: Router) {
     this.path = window.app["path"];
@@ -55,13 +55,7 @@ export class LoginService {
           C3_558541922352: "main",
           C3_558541955195: "员工年度授予名单",
           C3_558541943043: "staffList"
-        }, {
-          C3_558541978410: '/main/staffListExport',
-          C3_558541903900: 1,
-          C3_558541922352: "main",
-          C3_558541955195: "员工年度授予导出",
-          C3_558541943043: "staffListExport"
-        },
+        }, 
         {
           C3_558541978410: '/main/rsu',
           C3_558541903900: 1,
@@ -81,6 +75,49 @@ export class LoginService {
           C3_558541955195: "员工年度授予审核",
           C3_558541943043: "rsuPend"
         },
+        {
+          C3_558541978410: '/main/staffListExport',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "员工年度授予导出",
+          C3_558541943043: "staffListExport"
+        },
+        {
+          C3_558541978410: '/main/myDetail',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "个人RSU查看",
+          C3_558541943043: "myDetail"
+        },
+        {
+          C3_558541978410: '/main/newEmploy',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "新入职员工RSU管理",
+          C3_558541943043: "newEmploy"
+        },
+        {
+          C3_558541978410: '/main/leaveEmploy',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "离职人员RSU",
+          C3_558541943043: "leaveEmploy"
+        },
+        {
+          C3_558541978410: '/main/HistoryRsuList',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "RSU历史记录表",
+          C3_558541943043: "HistoryRsuList"
+        },
+        {
+          C3_558541978410: '/main/RsuAccountList',
+          C3_558541903900: 1,
+          C3_558541922352: "main",
+          C3_558541955195: "RSU账户",
+          C3_558541943043: "RsuAccountList"
+        },
+       
         {
           C3_558541978410: '/main/clearCache',
           C3_558541903900: 0,

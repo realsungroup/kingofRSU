@@ -1,0 +1,16 @@
+<div nz-row nz-form-item>
+  <div nz-form-label>
+    <label>开始时间</label>
+  </div>
+  <div nz-form-control>
+    <nz-datepicker [(ngModel)]="_startDate" (ngModelChange)="dateChange($event,0)" [ngModelOptions]="{standalone: true}"></nz-datepicker>
+  </div>
+</div>
+<div nz-row nz-form-item>
+  <div nz-form-label>
+    <label>结束时间</label>
+  </div>
+  <div nz-form-control>
+    <nz-datepicker [(ngModel)]="_endDate" (ngModelChange)="dateChange($event,1)" [ngModelOptions]="{standalone: true}"></nz-datepicker>
+  </div>
+</div>

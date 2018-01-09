@@ -1,12 +1,14 @@
-import { Component, Input, OnInit, Output, EventEmitter,OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseHttpService } from '../../../../app/base-http-service/base-http.service';
 import { Observable } from 'rxjs';
 import { LZTab } from '../../interface/tab.interface';
-import { LZUntilService } from '../../until/until.service';
+import { LZUntilService } from '../../../shared/services/until/until.service';
 import { FormItemElementEM, FormItemTypeEM } from '../../enum/form-item.enum';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { FormService } from '../../service/form.service';
+import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-modal-form',
@@ -26,13 +28,15 @@ import { NzMessageService } from 'ng-zorro-antd';
   ]
 
 })
-export class ModalFormComponent implements OnInit,OnDestroy{
+export class ModalFormComponent implements OnInit, OnDestroy {
   enterOrBack: boolean = true;
 
   _theMainModal: boolean = true;//是否打开formresource组件（false为打开）
   path: any;//appConfig中路径
   advDictionaryListData: any;//传递给formresource组件的数据
 
+  @Input() localDataState = false;//本地数据管理状态
+  @Input() alertModal: boolean = false;
   @Input() isMainData: boolean = false;//是否是主表数据
   @Input() isCustomPosition: boolean = false;//是否组件自定义定位
   @Input() tabs: Array<LZTab> = [];//标签数据，获取标题数据后添加进去
@@ -40,7 +44,7 @@ export class ModalFormComponent implements OnInit,OnDestroy{
   @Input() resid: string = '';//主表ID
   @Output() eventNoti = new EventEmitter();//与lzcommontable组件通信
 
-  constructor(protected httpSev: BaseHttpService, protected ut: LZUntilService,protected messageSev:NzMessageService) {
+  constructor(protected httpSev: BaseHttpService, protected ut: LZUntilService, protected messageSev: NzMessageService, protected modalSev: NzModalService,protected formService:FormService) {
     this.path = this.httpSev.path;
   }
 
@@ -79,7 +83,7 @@ export class ModalFormComponent implements OnInit,OnDestroy{
       data => {
         if (data && data.data && data.data.columns) {
           //筛选出字段类型数据
-          tab.titleArray = data.data.columns.filter(item => (item.ColName && item.ColName.length) || (item.FrmFieldFormType == FormItemElementEM.ImageForUrlCol));
+          tab.titleArray = data.data.columns.filter(item => (item.ColName && item.ColName.length) || (item.FrmFieldFormType == FormItemElementEM.ImageForUrlCol) || (item.FrmFieldFormType == FormItemElementEM.ImageForInputform));
           //筛选出标题类型数据
           tab.titleElementArray = data.data.columns.filter(item => item.FrmFieldFormType == FormItemElementEM.Label);
           //form高度(absolute定位不会撑起父元素高度)
@@ -87,10 +91,12 @@ export class ModalFormComponent implements OnInit,OnDestroy{
           if (Array.isArray(formSelfArr) && formSelfArr[0]) tab.formHeight = formSelfArr[0]["FrmHeight"] || 0;
 
           //筛选出image类型
-          tab.imgElementArr = data.data.columns.filter(item => item.FrmFieldFormType == FormItemElementEM.ImageForUrlCol);
-          tab.imgElementArr = this.imgElementAddColName(tab.imgElementArr);
+          // tab.imgElementArr = data.data.columns.filter(item => item.FrmFieldFormType == FormItemElementEM.ImageForUrlCol);
+          // tab.imgElementArr = this.imgElementAddColName(tab.imgElementArr);
+          // tab.titleArray = this.fixTitleForImgType(tab.titleArray, tab.imgElementArr);
 
-          tab.titleArray = this.fixTitleForImgType(tab.titleArray, tab.imgElementArr);
+          
+          tab = this.formService.fixTabsTitleArr(data,tab);
         }
       },
       err => {
@@ -119,15 +125,9 @@ export class ModalFormComponent implements OnInit,OnDestroy{
   }
 
   /**********数据处理 */
-  imgElementAddColName(data: Array<any>): Array<any> {
-    data.forEach(item => {
-      let frmColName = item.FrmColName;
-      let index = frmColName.lastIndexOf("__") + 2;
-      item['lzImgUrl'] = '';
-      if (index >= 0) item.lzImgUrl = frmColName.substring(index, frmColName.length);
-    })
-    return data;
-  }
+  
+
+  
 
   //处理图片选择控件的type
   fixTitleForImgType(titleArr: Array<any>, imgElementArr: Array<any>): Array<any> {
@@ -139,6 +139,8 @@ export class ModalFormComponent implements OnInit,OnDestroy{
     return titleArr;
   }
 
+  
+
   /**********事件类*** */
 
   //返回点击事件
@@ -149,21 +151,24 @@ export class ModalFormComponent implements OnInit,OnDestroy{
 
   //提交事件(主表)
   submitClick() {
-    let url = this.path.baseUrl + this.path.saveData;
-    let params = {
-      resid: this.resid,
-      data: this.data
-    }
-
-    this.httpSev.baseRequest("POST", url, params, this.httpSev.dataT.FixOneDataEM).subscribe(
-      data => {
-        this.eventNoti.emit({ name: "update", data: this.data });//通知父组件更新数据
-        // alert("save success" + JSON.stringify(data));
-      },
-      err => {
-        this.messageSev.error("保存错误，错误信息： " + JSON.stringify(err));
+    if (this.localDataState) this.eventNoti.emit({ name: "modify", data: this.data });
+    else {
+      let url = this.path.baseUrl + this.path.saveData;
+      let params = {
+        resid: this.resid,
+        data: this.data
       }
-    )
+
+      this.httpSev.baseRequest("POST", url, params, this.httpSev.dataT.FixOneDataEM).subscribe(
+        data => {
+          this.eventNoti.emit({ name: "update", data: this.data });//通知父组件更新数据
+          // alert("save success" + JSON.stringify(data));
+        },
+        err => {
+          this.messageSev.error("保存错误，错误信息： " + JSON.stringify(err));
+        }
+      )
+    }
   }
 
   //提交事件(附表)
@@ -214,14 +219,14 @@ export class ModalFormComponent implements OnInit,OnDestroy{
     //console.info(params, urlStr)
     this.httpSev.baseRequest("POST", urlStr, params, this.httpSev.dataT.DeleteOneDataEM).subscribe(
       data => {
-        if (data.error == 0) {
+        if (data.error == 0 || data.Error == 0) {
           this.messageSev.success("删除成功");
           const index = tab.dataArray.indexOf(subData);
           if (index >= 0) tab.dataArray.splice(index, 1);
         }
       },
       err => {
-        this.messageSev.error("操作错误,错误信息："+JSON.stringify(err));
+        this.messageSev.error("操作错误,错误信息：" + JSON.stringify(err));
       },
       () => {
         subData.loading = false;
@@ -232,8 +237,8 @@ export class ModalFormComponent implements OnInit,OnDestroy{
   formItemDynamicClick(note) {
     //打开formitemresource 组件
     let title = note['title'];
-    this._theMainModal = false;
     this.advDictionaryListData = title.AdvDictionaryListData;
+    this._theMainModal = false;
   }
 
   //formItemDynamic刷新数据
@@ -241,7 +246,6 @@ export class ModalFormComponent implements OnInit,OnDestroy{
     let a = Object.assign({}, this.data);
     this.data = a;
   }
-
 
   formItemResourceNoti(note: any) {
     if (note['name'] == 'close') this._theMainModal = true;
@@ -264,7 +268,7 @@ export class ModalFormComponent implements OnInit,OnDestroy{
     return this.ut.customStyle(obj);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // console.log("=>>>>>>modal form destory");
   }
 }

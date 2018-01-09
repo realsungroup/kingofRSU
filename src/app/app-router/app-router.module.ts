@@ -12,7 +12,11 @@ import { StaffListComponent } from '../main/rsu-manage/staff-list/staff-list.com
 import { StaffListExportComponent } from '../main/rsu-manage/staff-list-export/staff-list-export.component';
 import { TeamEditComponent } from '../main/rsu-manage/team-edit/team-edit.component';
 import { RsuPendComponent } from '../main/rsu-manage/rsu-pend/rsu-pend.component';
-
+import {RsuNewEmployComponent  } from '../main/rsu-manage/rsu-new-employ/rsu-new-employ.component';
+import { RsuMyDetailComponent} from '../main/rsu-manage/rsu-my-detail/rsu-my-detail.component';
+import{ RsuLaeveEmployComponent} from'../main/rsu-manage/rsu-laeve-employ/rsu-laeve-employ.component';
+import{HistoryRsuListComponent} from'../main/rsu-manage/history-rsu-list/history-rsu-list.component';
+import{RsuAccountListComponent}from'../main/rsu-manage/rsu-account-list/rsu-account-list.component';
 const childRouts:Array<any> = [
   // { path: '', redirectTo: 'rsu', pathMatch: 'full'},
   { path: 'clearCache',component:ClearCacheComponent,link:'/main/clearCache'},
@@ -20,7 +24,12 @@ const childRouts:Array<any> = [
   { path: 'staffList',component:StaffListComponent,link:'/main/staffList'},
   { path: 'staffListExport',component:StaffListExportComponent,link:'/main/staffListExport'},
   { path: 'teamEdit',component:TeamEditComponent,link:'/main/teamEdit'},
-  { path: 'rsuPend',component:RsuPendComponent,link:'/main/rsuPend'}
+  { path: 'rsuPend',component:RsuPendComponent,link:'/main/rsuPend'},
+  {path: 'newEmploy',component:RsuNewEmployComponent,link:'/main/newEmploy'},
+  {path:'myDetail',component: RsuMyDetailComponent,link:'/main/myDetail'},
+  {path:'leaveEmploy',component:RsuLaeveEmployComponent,link:'/main/leaveEmploy'},
+  {path:'HistoryRsuList',component:HistoryRsuListComponent,link:'/main/HistoryRsuList'},
+  {path:'RsuAccountList',component:RsuAccountListComponent,link:'/main/RsuAccountList'}
 ]
 
 const routes: Array<any> = [

@@ -63,6 +63,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     window.app["badgeNo"] = '';
     window.app["userInfo"] = {};
     this.httpSev.updateAppConfig();
+
+    this.httpSev.storageSer.setRouter(null);
+    this.httpSev.storageSer.setUserInfo(null);
   }
 
   onResize() {

@@ -1,0 +1,63 @@
+<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+  <nz-tab>
+    <ng-template #nzTabHeading>
+    个人RSU查看
+    </ng-template>
+    <nz-spin [nzTip]="'loading...'" [nzSize]="'small'" [nzSpinning]="_dataLoading" >
+        
+        <nz-dropdown>
+            <button nz-button nz-dropdown><span>财年</span> <i class="anticon anticon-down"></i></button>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a target="_blank" rel="noopener noreferrer" >FY2013</a>
+              </li>
+              <li nz-menu-item>
+                <a target="_blank" rel="noopener noreferrer" >FY2014</a>
+              </li>
+              <li nz-menu-item>
+                <a target="_blank" rel="noopener noreferrer">FY2015</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+         <nz-table #nzTable [nzDataSource]="_data" [nzPageSize]="10">
+             <thead nz-thead>
+               <tr>
+                 <th nz-th *ngFor="let title of _titleArr">
+                   <span>{{title.text}}</span>
+                 </th>
+               </tr>
+               <tr>
+                  <th nz-th *ngFor="let title of _titleArr">
+                    <ng-container [ngSwitch]="title.id">
+                      <ng-container *ngSwitchCase="'C3_567604527905'">股票数总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604551986'">释放总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604566564'">解禁总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604578221'">取消总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604595533'">未解禁总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604615252'">未释放总额</ng-container>
+                      <ng-container *ngSwitchCase="'C3_567604642362'">可释放总额</ng-container>
+                    </ng-container>
+                  </th>
+                </tr>
+                <tr>
+                  <th nz-th *ngFor="let title of _titleArr;let index = index">
+                    <ng-container *ngIf="sumColArr.indexOf(title.id) !== -1">
+                      {{getColSum(title.id)}}
+                    </ng-container>
+                    
+                  </th>
+                </tr>
+             </thead>
+             <tbody nz-tbody>
+                 
+             </tbody>
+         </nz-table>
+         </nz-spin>
+  </nz-tab>
+  <nz-tab>
+    <ng-template #nzTabHeading>
+      下属RSU查看
+    </ng-template>
+ 
+  </nz-tab>
+</nz-tabset>

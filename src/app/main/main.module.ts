@@ -12,6 +12,7 @@ import { ClearCacheComponent } from '../main/cache/clear-cache/clear-cache.compo
 
 import { MainService } from './main.service';
 import { RsuManageModule } from './rsu-manage/rsu-manage.module';
+import { LZUntilService } from '../../lib/shared/services/until/until.service';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { RsuManageModule } from './rsu-manage/rsu-manage.module';
   entryComponents: [
   ],
   providers: [
-    MainService
+    MainService,
+    LZUntilService
   ]
 })
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, Injector } from '@angular/core';
 import { MainService } from '../main/main.service';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
-import { LZUntilService } from '../../lib/lzTableComponent/until/until.service';
+import { LZUntilService } from '../../lib/shared/services/until/until.service';
 
 @Component({
   selector: 'app-base',

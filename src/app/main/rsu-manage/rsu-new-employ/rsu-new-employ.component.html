@@ -1,0 +1,42 @@
+ <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+      <nz-tab>
+        <ng-template #nzTabHeading>
+          未审核
+        </ng-template>
+        <app-lzcommon-table #NeverSureTable
+        [isAutoData]="true"
+        [requestType]="'GET'"
+        [requestUrl]="urlA"
+        [requestParams]="requestParamsA"
+        [requestDataType]="requestDataType"
+        [operationOrginButton]="[true,true,false,false]"
+        [tabs]="tabs"
+        [havTableFilter]="true"
+        [filterColArr]="filterColArr"
+        [sortColArr]="sortColArr"
+        [operationButton]="operationButton"
+        (operationBtnNoti)="operationBtnNoti($event)"
+        [alertModal]="true"
+        [addFormName]="addFormName">
+    </app-lzcommon-table>
+      </nz-tab>
+      <nz-tab>
+        <ng-template #nzTabHeading>
+          已审核
+        </ng-template>
+        <app-lzcommon-table #OversureTable
+        [isAutoData]="true"
+        [requestType]="'GET'"
+        [requestUrl]="urlB"
+        [requestParams]="requestParamsB"
+        [requestDataType]="requestDataType"
+        [operationOrginButton]="[true,false,false,false]"
+       [tabs]="tabs"
+        [havTableFilter]="true"
+        [filterColArr]="filterColArr"
+        [sortColArr]="sortColArr"
+       [isExport]="true">
+       
+    </app-lzcommon-table>
+      </nz-tab>
+    </nz-tabset>

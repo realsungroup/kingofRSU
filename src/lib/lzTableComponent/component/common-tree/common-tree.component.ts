@@ -13,10 +13,12 @@ export class CommonTreeComponent implements OnInit {
   @Input() requestUrl:string = '';
   @Input() requestDataType:number = -1;
 
-  @Input() tableRequestParam:any = {};
+  @Input() tableRequestParam:any = {};// 表单请求参数
+  
 
-  @Input() rootNodeTitle:string = '';
-  @Output() updateRequestParamsEvent = new EventEmitter();
+  @Input() rootNodeTitle:string = '';// 根节点标题
+  
+  @Output() updateRequestParamsEvent = new EventEmitter();// 树节点展开回调函数
 
   cmswhereOrgin = '';
   options: any = {};
@@ -49,11 +51,12 @@ export class CommonTreeComponent implements OnInit {
       const path = this.httpSev.path;
       let url = path.baseUrl + path.getData;
       return new Promise((resolve, reject) => {
-        this.requestParams.cmswhere = this.cmswhereOrgin + node.id;
-        this.httpSev.baseRequest(this.requestType, this.requestUrl, this.requestParams, this.requestDataType)
+        let requestParams = Object.assign({},this.requestParams);
+        requestParams.cmswhere = this.cmswhereOrgin + node.id;
+        this.httpSev.baseRequest(this.requestType, this.requestUrl, requestParams, this.requestDataType)
           .subscribe(
           data => {
-            if (data && data.error == 0 && Array.isArray(data.data)) {
+            if (data && (data.error == 0 || data.Error == 0) && Array.isArray(data.data)) {
               <Array<any>>data.data.forEach(element => {
                 element.hasChildren = true;
               });

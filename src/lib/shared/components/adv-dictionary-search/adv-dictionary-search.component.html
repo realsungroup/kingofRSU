@@ -1,0 +1,15 @@
+<div nz-row nz-form-item>
+  <div nz-form-control>
+    <nz-input-group [nzSize]="'large'" [nzCompact]="true">
+      <input name="valueOne" [nzDisabled]=true [(ngModel)]="_personName" style="width: 60%;" [ngModelOptions]="{standalone: true}" nz-input>
+      <button nz-button [nzType]="'primary'" (click)="selectParamsClick()" [nzShape]="'circle'">
+        <i class="anticon anticon-search"></i>
+      </button>
+    </nz-input-group>
+  </div>
+</div>
+<ng-container *ngIf="_modalShow">
+  <lz-modal-frame (closeEM)="alertModalEM($event)">
+    <app-form-item-resource [advDictionaryListData]="advDictionaryListData" (formItemResourceNoti)="formItemResourceNoti($event)"></app-form-item-resource>
+  </lz-modal-frame>
+</ng-container>

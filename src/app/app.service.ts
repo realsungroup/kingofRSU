@@ -5,16 +5,19 @@ import 'rxjs/add/operator/map';
 declare global {
   interface Window {
     app: any;
+    debug: boolean;
   }
 }
 
 @Injectable()
 
+
 export class AppService {
-
+  
   app: any;
-
+  
   constructor(private http: Http) {
+    window.debug = false;
     this.loadAppConfigJsonSync();
   }
 

@@ -71,9 +71,6 @@ export class CommonCardComponent extends LZcommonTableComponent implements OnIni
           idx = i;
         }
       }
-      // if(element.style.left != cardW * idx + 'px') this.render2.setStyle(element, 'left', cardW * idx + 'px'); 
-      // if(element.style.top != minSumHeight + 'px') this.render2.setStyle(element, 'top', minSumHeight + 'px');
-      // if(element.style.display != 'block') this.render2.setStyle(element, 'display', 'block');
       this.render2.setStyle(element, 'left', cardW * idx + 'px'); 
       this.render2.setStyle(element, 'top', minSumHeight + 'px');
       this.render2.setStyle(element, 'display', 'block'); 

@@ -12,6 +12,12 @@ import { RsuManageComponent } from './rsu-edit/rsu-manage.component';
 import { RsuPendComponent } from './rsu-pend/rsu-pend.component';
 
 import { SharedModule } from '../../shared/shared.module';
+import { RsuNewEmployComponent } from './rsu-new-employ/rsu-new-employ.component';
+import { RsuMyDetailComponent } from './rsu-my-detail/rsu-my-detail.component';
+import { RsuLaeveEmployComponent } from './rsu-laeve-employ/rsu-laeve-employ.component';
+import { HistoryRsuListComponent } from './history-rsu-list/history-rsu-list.component';
+import { RsuAccountListComponent } from './rsu-account-list/rsu-account-list.component';
+
 
 @NgModule({
   imports: [
@@ -23,6 +29,6 @@ import { SharedModule } from '../../shared/shared.module';
     LzcommonTableModule,
     SharedModule
   ],
-  declarations: [StaffListComponent, StaffListExportComponent, TeamEditComponent,RsuManageComponent, RsuPendComponent]
+  declarations: [StaffListComponent, StaffListExportComponent, TeamEditComponent,RsuManageComponent, RsuPendComponent, RsuNewEmployComponent, RsuMyDetailComponent, RsuLaeveEmployComponent, HistoryRsuListComponent, RsuAccountListComponent]
 })
 export class RsuManageModule { }
