@@ -16,7 +16,7 @@ import { RsuNewEmployComponent } from './rsu-new-employ/rsu-new-employ.component
 import { RsuMyDetailComponent } from './rsu-my-detail/rsu-my-detail.component';
 import { RsuLaeveEmployComponent } from './rsu-laeve-employ/rsu-laeve-employ.component';
 import { HistoryRsuListComponent } from './history-rsu-list/history-rsu-list.component';
-import { RsuAccountListComponent } from './rsu-account-list/rsu-account-list.component';
+
 
 
 @NgModule({
@@ -29,6 +29,6 @@ import { RsuAccountListComponent } from './rsu-account-list/rsu-account-list.com
     LzcommonTableModule,
     SharedModule
   ],
-  declarations: [StaffListComponent, StaffListExportComponent, TeamEditComponent,RsuManageComponent, RsuPendComponent, RsuNewEmployComponent, RsuMyDetailComponent, RsuLaeveEmployComponent, HistoryRsuListComponent, RsuAccountListComponent]
+  declarations: [StaffListComponent, StaffListExportComponent, TeamEditComponent,RsuManageComponent, RsuPendComponent, RsuNewEmployComponent, RsuMyDetailComponent, RsuLaeveEmployComponent, HistoryRsuListComponent,]
 })
 export class RsuManageModule { }

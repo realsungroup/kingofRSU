@@ -107,16 +107,10 @@ export class LoginService {
           C3_558541978410: '/main/HistoryRsuList',
           C3_558541903900: 1,
           C3_558541922352: "main",
-          C3_558541955195: "RSU历史记录表",
+          C3_558541955195: "RSU账户管理",
           C3_558541943043: "HistoryRsuList"
         },
-        {
-          C3_558541978410: '/main/RsuAccountList',
-          C3_558541903900: 1,
-          C3_558541922352: "main",
-          C3_558541955195: "RSU账户",
-          C3_558541943043: "RsuAccountList"
-        },
+       
        
         {
           C3_558541978410: '/main/clearCache',

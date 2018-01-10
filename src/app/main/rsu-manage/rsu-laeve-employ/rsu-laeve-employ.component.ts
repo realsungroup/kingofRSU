@@ -22,7 +22,7 @@ _dataLoading:boolean=false;
 
    this.sumColArr=['C3_567604527905','C3_567604551986','C3_567604566564','C3_567604578221','C3_567604595533','C3_567604615252','C3_567604642362']
  let path=this.httpSev.path;
- let url = path.loginBaseUrl + path.getData;
+ let url = path.baseUrl + path.getData;
  let params = {
    resid: 568479877837,
    getcolumninfo: 1

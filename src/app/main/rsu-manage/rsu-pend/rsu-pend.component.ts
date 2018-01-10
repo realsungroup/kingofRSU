@@ -37,7 +37,7 @@ export class RsuPendComponent extends RsuManageComponent implements OnInit {
       }
     )
 
-    let url = path.loginBaseUrl + path.getData;
+    let url = path.baseUrl + path.getData;
     let params = {
       resid: 561571827662,
       getcolumninfo: 1

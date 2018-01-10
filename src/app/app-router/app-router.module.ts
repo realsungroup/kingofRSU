@@ -16,7 +16,7 @@ import {RsuNewEmployComponent  } from '../main/rsu-manage/rsu-new-employ/rsu-new
 import { RsuMyDetailComponent} from '../main/rsu-manage/rsu-my-detail/rsu-my-detail.component';
 import{ RsuLaeveEmployComponent} from'../main/rsu-manage/rsu-laeve-employ/rsu-laeve-employ.component';
 import{HistoryRsuListComponent} from'../main/rsu-manage/history-rsu-list/history-rsu-list.component';
-import{RsuAccountListComponent}from'../main/rsu-manage/rsu-account-list/rsu-account-list.component';
+
 const childRouts:Array<any> = [
   // { path: '', redirectTo: 'rsu', pathMatch: 'full'},
   { path: 'clearCache',component:ClearCacheComponent,link:'/main/clearCache'},
@@ -29,7 +29,7 @@ const childRouts:Array<any> = [
   {path:'myDetail',component: RsuMyDetailComponent,link:'/main/myDetail'},
   {path:'leaveEmploy',component:RsuLaeveEmployComponent,link:'/main/leaveEmploy'},
   {path:'HistoryRsuList',component:HistoryRsuListComponent,link:'/main/HistoryRsuList'},
-  {path:'RsuAccountList',component:RsuAccountListComponent,link:'/main/RsuAccountList'}
+
 ]
 
 const routes: Array<any> = [

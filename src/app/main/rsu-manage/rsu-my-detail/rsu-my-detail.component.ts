@@ -18,6 +18,7 @@ export class RsuMyDetailComponent implements OnInit {
   sumColArr: any[] = [];
   constructor(private httpSev:BaseHttpService,private messSev:NzMessageService) { }
   sortMap = {};
+  yearName = [];
   ngOnInit() {
     this.filterColArrA=['C3_567701444098','C3_567604448453','C3_567604448453'];
     this.sortColArrA=['C3_567604321733','C3_567604336405','C3_567604353999','C3_567604370515','C3_567604393810','C3_567604478172','C3_567604500064','C3_567604517813','C3_567604527905',
@@ -25,7 +26,7 @@ export class RsuMyDetailComponent implements OnInit {
 
  this.sumColArr=['C3_567604527905','C3_567604551986','C3_567604566564','C3_567604578221','C3_567604595533','C3_567604615252','C3_567604642362']
    let path = this.httpSev.path;
-    let url = path.loginBaseUrl + path.getData;
+    let url = path.baseUrl + path.getData;
     let params = {
       resid: 567704019233,
       getcolumninfo: 1
@@ -64,6 +65,22 @@ export class RsuMyDetailComponent implements OnInit {
         
       }
     )  
+    const yearUrl = path.baseUrl + path.getData;
+    const yearParams = {
+      resid: 561571034816
+    }
+    this.httpSev.baseRequest("GET", yearUrl, yearParams, this.httpSev.dataT.HostTableDataEM).subscribe(
+      data => {
+        if (data && data['data'] && Array.isArray(data['data'])) {
+          let yearDetailName = [];
+          data['data'].forEach(item => {
+            yearDetailName.push(item.C3_561550586204)
+          })
+          this.yearName = yearDetailName;
+        }
+
+      }, error => { }
+    )
    
   }
   // getFilterArrData(data: any, key: string): Array<any> {

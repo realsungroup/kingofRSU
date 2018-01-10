@@ -7,16 +7,11 @@
         
         <nz-dropdown>
             <button nz-button nz-dropdown><span>财年</span> <i class="anticon anticon-down"></i></button>
-            <ul nz-menu>
+            <ul nz-menu  *ngFor="let yearDatil of yearName">
               <li nz-menu-item>
-                <a target="_blank" rel="noopener noreferrer" >FY2013</a>
+                <a target="_blank" rel="noopener noreferrer" >{{yearDatil}}</a>
               </li>
-              <li nz-menu-item>
-                <a target="_blank" rel="noopener noreferrer" >FY2014</a>
-              </li>
-              <li nz-menu-item>
-                <a target="_blank" rel="noopener noreferrer">FY2015</a>
-              </li>
+              
             </ul>
           </nz-dropdown>
          <nz-table #nzTable [nzDataSource]="_data" [nzPageSize]="10">
@@ -26,7 +21,7 @@
                    <span>{{title.text}}</span>
                  </th>
                </tr>
-               <tr>
+               <!-- <tr>
                   <th nz-th *ngFor="let title of _titleArr">
                     <ng-container [ngSwitch]="title.id">
                       <ng-container *ngSwitchCase="'C3_567604527905'">股票数总额</ng-container>
@@ -46,10 +41,14 @@
                     </ng-container>
                     
                   </th>
-                </tr>
+                </tr> -->
              </thead>
              <tbody nz-tbody>
-                 
+              <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                <td nz-td *ngFor="let title of _titleArr">
+                  {{data[title.id]}}
+                </td>
+         </tr>
              </tbody>
          </nz-table>
          </nz-spin>
